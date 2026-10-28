@@ -1,10 +1,18 @@
-using BlazorApp1.Components;
+using MockDealership.Application.Services;
+using MockDealership.Infrastructure;
+using MockDealership.Web.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+var connectionString = builder.Configuration.GetConnectionString("Default")
+    ?? throw new InvalidOperationException("Connection string 'Default' is not configured.");
+
+builder.Services.AddInfrastructure(connectionString);
+builder.Services.AddScoped<VehicleService>();
 
 var app = builder.Build();
 
