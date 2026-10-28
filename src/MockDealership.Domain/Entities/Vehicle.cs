@@ -12,4 +12,16 @@ public class Vehicle
     public VehicleStatus Status { get; set; } = VehicleStatus.Available;
 
     public Sale? Sale { get; set; }
+
+    public Vehicle()
+    {
+    }
+
+    public Vehicle(int id, int year, int mileage, decimal price)
+    {
+        Id = id;
+        Year = year;
+        Mileage = mileage;
+        Price = price;
+    }
 }
